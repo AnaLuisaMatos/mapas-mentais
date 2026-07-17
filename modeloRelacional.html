@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Mapa Mental - Modelo Relacional</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d29;
+    --accent1: #6ee7b7;
+    --accent2: #93c5fd;
+    --accent3: #fca5a5;
+    --accent4: #fcd34d;
+    --accent5: #c4b5fd;
+    --accent6: #f9a8d4;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 24px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 4px;
+    color: var(--accent2);
+    letter-spacing: 0.5px;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+  .center-node {
+    display: block;
+    margin: 0 auto 32px;
+    background: linear-gradient(135deg, #059669, #0891b2);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 17px;
+    width: fit-content;
+    box-shadow: 0 4px 20px rgba(8,145,178,0.4);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+  .branch {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 16px 18px;
+    border-top: 4px solid var(--accent-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  .branch h2 {
+    font-size: 15px;
+    margin: 0 0 10px;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .branch h2 .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent-color);
+    flex-shrink: 0;
+  }
+  ul { margin: 0; padding-left: 18px; }
+  li { margin-bottom: 6px; font-size: 13px; line-height: 1.4; color: var(--text); }
+  li strong { color: #fff; }
+  .sub-list { margin-top: 4px; padding-left: 16px; }
+  .sub-list li { font-size: 12px; color: var(--muted); }
+  code {
+    background: rgba(255,255,255,0.08);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    color: #fcd34d;
+  }
+  details { margin-bottom: 6px; }
+  summary {
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text);
+  }
+  summary strong { color: #fff; }
+  summary:hover { color: var(--accent-color); }
+  .note {
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid var(--accent4);
+    padding: 8px 10px;
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 10px;
+    border-radius: 6px;
+  }
+</style>
+</head>
+<body>
+
+<h1>🗺️ Modelo Relacional</h1>
+<div class="subtitle">Proposto por Codd (anos 70) — modelo lógico baseado em teoria dos conjuntos</div>
+
+<div class="center-node">Modelo Relacional</div>
+
+<div class="grid">
+
+  <!-- CONCEITOS BASICOS -->
+  <div class="branch" style="--accent-color: var(--accent2)">
+    <h2><span class="dot"></span>Conceitos Básicos</h2>
+    <ul>
+      <li>Dados armazenados como <strong>relações</strong></li>
+      <li>Esquema: <code>R(A1, A2, ..., An)</code></li>
+      <details>
+        <summary><strong>Mapeamento Formal ↔ Informal</strong></summary>
+        <ul class="sub-list">
+          <li>Relação ↔ Tabela</li>
+          <li>Atributo ↔ Coluna</li>
+          <li>Tupla ↔ Linha</li>
+        </ul>
+      </details>
+      <li><strong>Estado da relação</strong>: conjunto de tuplas em um dado momento ("fotografia")</li>
+      <li><strong>Domínio</strong>: conjunto de valores atômicos válidos de um atributo</li>
+      <details>
+        <summary><strong>Grau vs Cardinalidade</strong></summary>
+        <ul class="sub-list">
+          <li>Grau (aridade): nº de atributos</li>
+          <li>Cardinalidade: nº corrente de tuplas (linhas)</li>
+          <li class="note">⚠️ Não confundir com cardinalidade de relacionamento (MER)!</li>
+        </ul>
+      </details>
+    </ul>
+  </div>
+
+  <!-- CARACTERISTICAS -->
+  <div class="branch" style="--accent-color: var(--accent1)">
+    <h2><span class="dot"></span>Características</h2>
+    <ul>
+      <details>
+        <summary><strong>Quantidade de dados</strong></summary>
+        <ul class="sub-list">
+          <li>Nº de atributos: finito</li>
+          <li>Nº de tuplas: ilimitado (na teoria)</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Ordem dos dados</strong></summary>
+        <ul class="sub-list">
+          <li>Linhas (tuplas): não ordenadas</li>
+          <li>Colunas: ordem relevante no esquema formal</li>
+          <li>Com mapeamento nome→valor, ordem das colunas não importa</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Valor nulo (NULL)</strong></summary>
+        <ul class="sub-list">
+          <li>Indica valor desconhecido ou não aplicável</li>
+        </ul>
+      </details>
+    </ul>
+  </div>
+
+  <!-- CHAVES -->
+  <div class="branch" style="--accent-color: var(--accent3)">
+    <h2><span class="dot"></span>Chaves</h2>
+    <ul>
+      <details>
+        <summary><strong>Superchave</strong></summary>
+        <ul class="sub-list">
+          <li>Subconjunto de atributos que não se repete entre tuplas</li>
+          <li>Pode ter atributos redundantes</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Chave candidata</strong></summary>
+        <ul class="sub-list">
+          <li>Superchave mínima (sem redundância)</li>
+          <li>Pode haver mais de uma</li>
+        </ul>
+      </details>
+      <li><strong>Chave primária</strong>: chave candidata escolhida — nunca pode ser NULL</li>
+      <details>
+        <summary><strong>Chave estrangeira (FK)</strong></summary>
+        <ul class="sub-list">
+          <li>Referencia atributo de outra relação (ou da mesma, em auto-relacionamento)</li>
+          <li>Pode ter valores duplicados e NULL</li>
+        </ul>
+      </details>
+    </ul>
+  </div>
+
+  <!-- RESTRICOES -->
+  <div class="branch" style="--accent-color: var(--accent5)">
+    <h2><span class="dot"></span>Restrições</h2>
+    <ul>
+      <li><strong>Implícitas</strong>: inerentes ao modelo (grau finito, tuplas únicas...)</li>
+      <li><strong>Explícitas</strong>: expressas no esquema via DDL</li>
+      <li><strong>Semânticas</strong>: regras de negócio (ASSERTIONS/TRIGGERS)</li>
+      <details>
+        <summary><strong>Restrições baseadas em esquema</strong></summary>
+        <ul class="sub-list">
+          <li>De domínio: valor deve pertencer ao domínio do atributo</li>
+          <li>De chave: unicidade da chave primária</li>
+          <li>Sobre valores nulos: define se atributo aceita NULL</li>
+          <li>Integridade da entidade: PK nunca pode ser NULL</li>
+          <li>Integridade referencial: FK deve ser NULL ou apontar para tupla existente</li>
+        </ul>
+      </details>
+    </ul>
+  </div>
+
+  <!-- OPERACOES -->
+  <div class="branch" style="--accent-color: var(--accent4)">
+    <h2><span class="dot"></span>Operações Básicas</h2>
+    <ul>
+      <li><strong>Recuperações</strong>: vistas em Álgebra Relacional</li>
+      <details>
+        <summary><strong>Atualizações</strong></summary>
+        <ul class="sub-list">
+          <li><strong>Inserir</strong>: pode violar qualquer restrição de esquema</li>
+          <li><strong>Excluir</strong>: pode violar só integridade referencial</li>
+          <li><strong>Atualizar</strong>: depende de qual atributo é alterado (PK, FK ou comum)</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Tratamento de exclusão (FK referenciada)</strong></summary>
+        <ul class="sub-list">
+          <li><strong>restrict</strong>: impede a exclusão</li>
+          <li><strong>cascade</strong>: propaga a exclusão</li>
+          <li><strong>set null</strong>: define FK como NULL</li>
+          <li><strong>set default</strong>: define FK com valor padrão</li>
+        </ul>
+      </details>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>
