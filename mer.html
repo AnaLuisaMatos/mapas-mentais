@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Mapa Mental - Modelo Entidade-Relacionamento (MER)</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d29;
+    --accent1: #6ee7b7;
+    --accent2: #93c5fd;
+    --accent3: #fca5a5;
+    --accent4: #fcd34d;
+    --accent5: #c4b5fd;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 24px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 4px;
+    color: var(--accent2);
+    letter-spacing: 0.5px;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+  .center-node {
+    display: block;
+    margin: 0 auto 32px;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 17px;
+    width: fit-content;
+    box-shadow: 0 4px 20px rgba(79,70,229,0.4);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+  .branch {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 16px 18px;
+    border-top: 4px solid var(--accent-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  .branch h2 {
+    font-size: 15px;
+    margin: 0 0 10px;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .branch h2 .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent-color);
+    flex-shrink: 0;
+  }
+  ul { margin: 0; padding-left: 18px; }
+  li { margin-bottom: 6px; font-size: 13px; line-height: 1.4; color: var(--text); }
+  li strong { color: #fff; }
+  .sub-list { margin-top: 4px; padding-left: 16px; }
+  .sub-list li { font-size: 12px; color: var(--muted); }
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    background: rgba(255,255,255,0.08);
+    padding: 1px 6px;
+    border-radius: 6px;
+    margin-left: 4px;
+    color: var(--muted);
+  }
+  details { margin-bottom: 6px; }
+  summary {
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text);
+  }
+  summary strong { color: #fff; }
+  summary:hover { color: var(--accent-color); }
+  .note {
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid var(--accent4);
+    padding: 8px 10px;
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 10px;
+    border-radius: 6px;
+  }
+</style>
+</head>
+<body>
+
+<h1>🗺️ Modelo Entidade-Relacionamento (MER)</h1>
+<div class="subtitle">Mapa mental do capítulo — clique nos itens para expandir</div>
+
+<div class="center-node">MER</div>
+
+<div class="grid">
+
+  <!-- ENTIDADES -->
+  <div class="branch" style="--accent-color: var(--accent2)">
+    <h2><span class="dot"></span>Entidades</h2>
+    <ul>
+      <li>Representam "objetos" do mundo real (físicos ou abstratos)</li>
+      <li>Representadas por <strong>retângulos</strong></li>
+      <details>
+        <summary><strong>Entidade Forte</strong></summary>
+        <ul class="sub-list">
+          <li>Possui atributo-chave próprio</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Entidade Fraca</strong></summary>
+        <ul class="sub-list">
+          <li>Não possui atributo-chave próprio</li>
+          <li>Retângulo dentro de retângulo</li>
+          <li>Depende de entidade forte para existir</li>
+          <li>Ligada por relacionamento de identificação (losango de borda dupla)</li>
+          <li>Possui <strong>chave parcial</strong> (sublinhado pontilhado)</li>
+        </ul>
+      </details>
+    </ul>
+  </div>
+
+  <!-- ATRIBUTOS -->
+  <div class="branch" style="--accent-color: var(--accent1)">
+    <h2><span class="dot"></span>Atributos</h2>
+    <ul>
+      <li>Características das entidades — representados por <strong>elipses</strong></li>
+      <details>
+        <summary><strong>Simples vs Composto</strong></summary>
+        <ul class="sub-list">
+          <li>Simples: indivisível (ex: CPF)</li>
+          <li>Composto: divide em subatributos (ex: Endereço → Rua, CEP...)</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Valor único vs Multivalorado</strong></summary>
+        <ul class="sub-list">
+          <li>Único: só um valor possível (ex: data de nascimento)</li>
+          <li>Multivalorado: pode ter vários valores (ex: telefone) — elipse dupla</li>
+          <li class="tag">Pegadinha de prova: composto ≠ multivalorado</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Armazenado vs Derivado</strong></summary>
+        <ul class="sub-list">
+          <li>Armazenado: fica salvo no banco</li>
+          <li>Derivado: calculado a partir de outro (ex: idade) — elipse pontilhada</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Atributo-chave</strong></summary>
+        <ul class="sub-list">
+          <li>Único para cada registro</li>
+          <li>Nome sublinhado no diagrama</li>
+        </ul>
+      </details>
+      <li><strong>Domínio</strong>: conjunto de valores válidos do atributo</li>
+    </ul>
+  </div>
+
+  <!-- RELACIONAMENTOS -->
+  <div class="branch" style="--accent-color: var(--accent3)">
+    <h2><span class="dot"></span>Relacionamentos</h2>
+    <ul>
+      <li>Como as entidades se associam — representados por <strong>losangos</strong></li>
+      <details>
+        <summary><strong>Grau</strong></summary>
+        <ul class="sub-list">
+          <li>Unário (1 entidade) — recursivo</li>
+          <li>Binário (2 entidades) — mais comum</li>
+          <li>Ternário (3 entidades)</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Papel (role)</strong></summary>
+        <ul class="sub-list">
+          <li>Função da entidade no relacionamento</li>
+          <li>Essencial em relacionamentos recursivos (ex: Supervisiona)</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Cardinalidade</strong></summary>
+        <ul class="sub-list">
+          <li>Notação (mín, máx) — olhar sempre do lado oposto</li>
+          <li>Mín 1 = obrigatório · Mín 0 = opcional</li>
+          <li>Tipos: 1:1, 1:N, N:N</li>
+          <li>Notação alternativa: <strong>pé de galinha</strong> (crow's foot)</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Restrição de participação</strong></summary>
+        <ul class="sub-list">
+          <li>Total (dependência de existência) — linha dupla</li>
+          <li>Parcial — linha simples</li>
+        </ul>
+      </details>
+      <li><strong>Atributos de relacionamento</strong>: propriedades do próprio relacionamento (ex: data de matrícula)</li>
+    </ul>
+  </div>
+
+  <!-- MER ESTENDIDO -->
+  <div class="branch" style="--accent-color: var(--accent5)">
+    <h2><span class="dot"></span>MER Estendido — Herança</h2>
+    <ul>
+      <li><strong>Especialização</strong>: superclasse → subclasses</li>
+      <li><strong>Generalização</strong>: subclasses → superclasse</li>
+      <li>Subclasses herdam atributos/relacionamentos da superclasse</li>
+      <details>
+        <summary><strong>Restrição de disjunção</strong></summary>
+        <ul class="sub-list">
+          <li><strong>d</strong> (disjoint): entidade pertence a no máx. 1 subclasse</li>
+          <li><strong>o</strong> (overlapping): entidade pode pertencer a mais de uma</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Restrição de completude</strong></summary>
+        <ul class="sub-list">
+          <li>Total: toda entidade da superclasse deve estar em alguma subclasse</li>
+          <li>Parcial: pode não pertencer a nenhuma subclasse</li>
+        </ul>
+      </details>
+      <div class="note">
+        Disjunção e completude são independentes → 4 combinações possíveis: disjunção total, disjunção parcial, sobreposição total, sobreposição parcial.
+      </div>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>
