@@ -245,6 +245,49 @@
     </ul>
   </div>
 
+  <!-- ESQUEMA X INSTANCIA -->
+  <div class="branch" style="--accent-color: var(--accent6)">
+    <h2><span class="dot"></span>Esquema × Instância × Catálogo</h2>
+    <ul>
+      <details>
+        <summary><strong>Modelo de Dados</strong></summary>
+        <ul class="sub-list">
+          <li>Conjunto de conceitos, estruturas e restrições para descrever/organizar dados</li>
+          <li>Ex: relacional, hierárquico, orientado a objetos</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Esquema</strong></summary>
+        <ul class="sub-list">
+          <li>Estrutura lógica / "design" do banco (tabelas, colunas, tipos, restrições)</li>
+          <li>Estático — raramente muda</li>
+          <li>Representa a <strong>intenção</strong> do banco</li>
+          <li>Representado por diagramas</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Instância (Estado)</strong></summary>
+        <ul class="sub-list">
+          <li>Conteúdo atual do banco em um dado momento</li>
+          <li>Dinâmica — muda com inserir/excluir/atualizar</li>
+          <li>Também chamada de <strong>extensão</strong> do esquema</li>
+          <li>Fase final do projeto: banco criado e em operação</li>
+        </ul>
+      </details>
+      <details>
+        <summary><strong>Catálogo</strong></summary>
+        <ul class="sub-list">
+          <li>Área do SGBD onde ficam os metadados</li>
+          <li>Armazena descrições do esquema (tabelas, colunas, índices) + direitos de acesso</li>
+          <li>Garante que o estado siga as restrições do esquema</li>
+        </ul>
+      </details>
+      <div class="note">
+        Fluxo: Modelo de Dados → Esquema → Instância. O esquema pode <strong>evoluir</strong> (evolução de esquema), até com o banco em operação em SGBDs modernos. A PK e demais restrições ficam definidas no <strong>esquema</strong> (e descritas no catálogo) — mas seus valores aparecem preenchidos na <strong>instância</strong>.
+      </div>
+    </ul>
+  </div>
+
 </div>
 
 </body>
